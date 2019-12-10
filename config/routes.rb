@@ -26,6 +26,12 @@ Rails.application.routes.draw do
   #     end
   #   end
 
+
+Myrottenpotatoes::Application.routes.draw do
+  resources :movies
+  root :to => redirect('/movies')
+end
+
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales

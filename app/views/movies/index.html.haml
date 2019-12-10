@@ -1,0 +1,28 @@
+%h1 All Movies
+-# 폼 이름, action(어디로 보낼 것인가 ) , method
+= form_tag movies_path, :method => :get do
+  Include:
+  - @all_ratings.each do |rating|
+    = rating
+    = check_box_tag "ratings[#{rating}]",1, id: 'ratings_#{rating}'
+  = submit_tag 'Refresh'
+  
+%table#movies
+  %thead
+    %tr
+      %th{class: @css_title}= link_to "Movie Title",id: 'title_header'
+      %th Rating
+      %th{class: @css_release_date}= link_to "Release Date",id: 'release_date_header'
+      %th More Info
+  %tbody
+    - @movies.each do |movie|
+      %tr
+        %td= movie.title 
+        %td= movie.rating
+        %td= movie.release_date
+        %td= link_to "More about #{movie.title}", movie_path(movie)
+
+  -# add to end of index.html.haml
+= link_to 'Add new movie', new_movie_path
+
+-# 클릭했을 때, 색 변하는 거 구현=> @css 변수로 해결 controller에서 처리

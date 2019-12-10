@@ -1,0 +1,20 @@
+%h2 Details about #{@movie.title}
+
+%ul#details
+  %li
+    Rating:
+    = @movie.rating
+  %li
+    Released on:
+    = @movie.release_date.strftime("%B %d, %Y")
+
+%h3 Description:
+
+%p#description= @movie.description
+
+-# edit 하는 거 추가
+= link_to 'Edit info', edit_movie_path(@movie) 
+
+-# 뒤로가기 링크 추가
+= link_to 'Back to movie list', movies_path
+
