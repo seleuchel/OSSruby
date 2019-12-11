@@ -5,7 +5,8 @@ class MoviesController < ApplicationController
 
     @movies = Movie.all
     @all_ratings = ['G','PG','PG-13','R','NC-17']
-    id = params[:id]
+    id = params[:id] || session[:id]
+    
     
     ##for_setting#######################################
     if (params[:commit] == 'Refresh')
@@ -29,10 +30,12 @@ class MoviesController < ApplicationController
     if id == 'title_header'
       @movies = @movies.order('title')
       @css_title = 'hilite'
+      session[:id]= id
     end
     if id == 'release_date_header'
       @movies = @movies.order('release_date')
       @css_release_date = 'hilite'
+      session[:id]= id
     end
   end
   
